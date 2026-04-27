@@ -1,0 +1,54 @@
+#Creation of VMware tags if the tags mentioned in csv do not exist in vCenter
+
+Connect-VIServer -server "server FQDN or IP"
+
+$completedata = (Import-csv "/path/to/csv" )
+
+foreach ($row in $completedata){
+
+$vm = Get-VM -Name $row.Name
+
+Write-Host "$($vm)"
+
+#inside csv make sure to define the first row with correct name of tag
+
+$tag1 = Get-Tag -Category "Application Name" -Name $row.ApplicationName
+
+$tag2 = Get-Tag -Category "Department Name" -Name $row.DepartmentName
+
+$tag3 = Get-Tag -Category "Location" -Name $row.Location
+
+$tag4 = Get-Tag -Category "Environment" -Name $row.Environment
+
+
+if($tag1){
+Write-Host "Tag exists"
+}
+else{
+
+New-Tag -Name $row.ApplicationName -Category "Application Name"
+
+}
+if($tag1){
+Write-Host "Tag exists"
+}
+else{
+
+New-Tag -Name $row.DepartmentName -Category "Department Name" 
+
+}
+if($tag1){
+Write-Host "Tag exists"
+}
+else{
+
+New-Tag -Name $row.Location -Category "Location" 
+
+}if($tag1){
+Write-Host "Tag exists"
+}
+else{
+
+New-Tag -Name $row.Environment -Category "Environment"
+
+}
