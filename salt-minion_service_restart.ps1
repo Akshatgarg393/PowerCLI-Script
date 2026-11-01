@@ -11,12 +11,12 @@ echo `$(systemctl is-active salt-minion)
 
 if($os -eq "Redhatlinux-8"){
 
-$username = "clouduser"
+$username = ""
 
 }
 elseif ($os -eq "RedHatlinux-9") {
 
-$username = "skycolor"
+$username = ""
 
 }
 
